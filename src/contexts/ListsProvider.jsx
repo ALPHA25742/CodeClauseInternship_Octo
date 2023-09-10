@@ -11,8 +11,23 @@ export function ListsProvider({ children }) {
   const { lists, setLists } = useLocalStorage();
   const [selectedList, setSelectedList] = useState(0);
 
-  function selectList(n) {
-    return setSelectedList(n);
+  const selectList = (n) => {
+    setSelectedList(n);
+  };
+
+  function addList(newListName) {
+    setLists((li) => {
+      return [...li, { listName: newListName, tasks: [] }];
+    });
+  }
+
+  function removeList(listName) {
+    if (selectedList == lists.length - 1) setSelectedList(0);
+    setLists((prevLists) => {
+      return prevLists.filter((li) => {
+        return li.listName != listName;
+      });
+    });
   }
 
   function addTask(task) {
@@ -30,7 +45,6 @@ export function ListsProvider({ children }) {
   }
 
   function removeTask(task) {
-    // console.log('called');
     setLists((prevLists) => {
       return prevLists.map((li) => {
         if (li.listName === lists[selectedList].listName) {
@@ -44,18 +58,12 @@ export function ListsProvider({ children }) {
     });
   }
 
-  function addList(newListName) {
-    setLists((li) => {
-      return [...li, { listName: newListName, tasks: [] }];
-    });
-  }
-
   return (
     <ListsContext.Provider
       value={{
         lists,
-        setLists,
         addList,
+        removeList,
         selectList,
         selectedList,
         addTask,

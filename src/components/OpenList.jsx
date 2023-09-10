@@ -7,9 +7,8 @@ import { useRef, useState } from "react";
 
 export default function OpenList() {
   const { lists, selectedList, addTask } = useLists();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);  
   const newTask = useRef();
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   function handleSubmit(e) {
@@ -17,18 +16,27 @@ export default function OpenList() {
     handleClose();
     addTask(newTask.current.value);
   }
+  const windowWidth = useRef(window.innerWidth);
+  const mobileView = windowWidth.current <= 768;
+  
   return (
-    <section className="col-8 d-flex flex-column">
-      <section className="d-flex flex-grow-1">
-          <h1 className="d-none">
-            {lists.length != 0 && lists[selectedList].listName}
-          </h1>
-        <article className="flex-grow-1 align-self-center bg-secondary rounded-4 px-2 py-3">
-          {lists[selectedList].tasks.length!=0? <Tasks />:<span className="text-center d-block">Let's get those tasks stacked and done ASAP!</span>}
+    <section className={`${mobileView?'flex-grow-1':'col-md-8'} d-flex flex-column`}>
+      <section className="d-flex flex-grow-1 p-3 pt-5">
+        <h1 className="d-none">
+          {/* {lists.length != 0 && lists[selectedList].listName} */ }
+        </h1>
+        <article className="flex-grow-1 align-self-center bg-secondary rounded-4 p-3 overflow-y-auto">
+          {lists[selectedList].tasks.length != 0 ? (
+            <Tasks />
+          ) : (
+            <span className="text-center d-block">
+              Let's get those tasks stacked and done ASAP!
+            </span>
+          )}
         </article>
       </section>
       <button
-        className="btn btn-light rounded-4 w-50 align-self-center mb-5"
+        className="btn btn-light rounded-4 w-50 align-self-center my-5"
         onClick={handleShow}
       >
         <svg

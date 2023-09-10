@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useRef, useState } from "react";
 import Lists from "./Lists";
 import { useLists } from "../contexts/ListsProvider";
-export default function Sidebar() {
+export default function MobileSidebar({close}) {
   const [show, setShow] = useState(false);
   const { addList } = useLists();
   const newListName = useRef();
@@ -16,9 +16,9 @@ export default function Sidebar() {
     handleClose();
   }
   return (
-    <section className="col-4 d-none d-md-flex flex-column justify-content-between bg-secondary">
+    <section className="d-flex flex-column justify-content-between h-100">
       <h1 className="display-4 text-center my-5">Lists</h1>
-      <Lists />
+      <Lists close={close}/>
       <button className="btn btn-outline-light rounded-4 my-5 w-50 align-self-center" onClick={handleShow}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
