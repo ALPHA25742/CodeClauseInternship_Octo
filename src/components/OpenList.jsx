@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 
 export default function OpenList() {
   const { lists, selectedList, addTask } = useLists();
-  const [show, setShow] = useState(false);  
+  const [show, setShow] = useState(false);
   const newTask = useRef();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,12 +18,16 @@ export default function OpenList() {
   }
   const windowWidth = useRef(window.innerWidth);
   const mobileView = windowWidth.current <= 768;
-  
+
   return (
-    <section className={`${mobileView?'flex-grow-1':'col-md-8'} d-flex flex-column`}>
+    <section
+      className={`${
+        mobileView ? "flex-grow-1" : "col-md-8"
+      } d-flex flex-column`}
+    >
       <section className="d-flex flex-grow-1 p-3 pt-5">
         <h1 className="d-none">
-          {/* {lists.length != 0 && lists[selectedList].listName} */ }
+          {/* {lists.length != 0 && lists[selectedList].listName} */}
         </h1>
         <article className="flex-grow-1 align-self-center bg-secondary rounded-4 p-3 overflow-y-auto">
           {lists[selectedList].tasks.length != 0 ? (
@@ -56,22 +60,21 @@ export default function OpenList() {
           <Modal.Title>Task pls.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} className="d-flex flex-column">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Control
                 type="text"
                 placeholder="Best of luck!"
                 autoFocus
                 ref={newTask}
+                className="rounded-4"
               />
             </Form.Group>
+            <Button type="submit" variant="light" className=" w-50 align-self-center rounded-4">
+              Add
+            </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button type="submit" variant="light">
-            Add
-          </Button>
-        </Modal.Footer>
       </Modal>
     </section>
   );
