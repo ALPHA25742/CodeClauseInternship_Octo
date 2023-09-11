@@ -38,7 +38,7 @@ export default function Sidebar() {
           <Modal.Title>List name pls.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={addNewList}>
+          <Form onSubmit={addNewList} className="d-flex flex-column">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Control
                 type="text"
@@ -46,16 +46,14 @@ export default function Sidebar() {
                 autoFocus
                 ref={newListName}
                 required
+                className="rounded-4"
               />
             </Form.Group>
-            
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button type="submit" variant="light">
+            <Button type="submit" variant="light" className="w-50 align-self-center rounded-4">
               Add
             </Button>
-        </Modal.Footer>
+          </Form>
+        </Modal.Body>
       </Modal>
     </section>
   );

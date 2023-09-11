@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useRef, useState } from "react";
 import Lists from "./Lists";
 import { useLists } from "../contexts/ListsProvider";
-export default function MobileSidebar({close}) {
+export default function MobileSidebar({ close }) {
   const [show, setShow] = useState(false);
   const { addList } = useLists();
   const newListName = useRef();
@@ -18,8 +18,11 @@ export default function MobileSidebar({close}) {
   return (
     <section className="d-flex flex-column justify-content-between h-100">
       <h1 className="display-4 text-center my-5">Lists</h1>
-      <Lists close={close}/>
-      <button className="btn btn-outline-light rounded-4 my-5 w-50 align-self-center" onClick={handleShow}>
+      <Lists close={close} />
+      <button
+        className="btn btn-outline-light rounded-4 my-5 w-50 align-self-center"
+        onClick={handleShow}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"
@@ -34,28 +37,33 @@ export default function MobileSidebar({close}) {
       </button>
 
       <Modal centered show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>List name pls.</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form onSubmit={addNewList}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Control
-                type="text"
-                placeholder="Here we go!"
-                autoFocus
-                ref={newListName}
-                required
-              />
-            </Form.Group>
-            
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button type="submit" variant="light">
-              Add
-            </Button>
-        </Modal.Footer>
+          <Modal.Header closeButton>
+            <Modal.Title>List name pls.</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={addNewList} className="d-flex flex-column">
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  type="text"
+                  placeholder="Here we go!"
+                  autoFocus
+                  ref={newListName}
+                  required
+                  className="rounded-4"
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                variant="light"
+                className="w-50 align-self-center rounded-4"
+              >
+                Add
+              </Button>
+            </Form>
+          </Modal.Body>
       </Modal>
     </section>
   );
