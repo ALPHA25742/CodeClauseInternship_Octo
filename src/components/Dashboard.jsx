@@ -13,7 +13,7 @@ export default function Dashboard() {
   const { lists } = useLists();
 
   return (
-    <section className="container-fluid" style={{height:'100vh'}}>
+    <section className="container-fluid" style={{height:'100dvh'}}>
       <section className={`${mobileView?'d-flex flex-column':'row'} h-100`}>
         <div className="d-md-none align-self-end">
           <svg
