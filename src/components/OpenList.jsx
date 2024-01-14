@@ -70,7 +70,7 @@ export default function OpenList() {
                 className="rounded-4"
               />
             </Form.Group>
-            <Button type="submit" variant="light" className=" w-50 align-self-center rounded-4">
+            <Button type="submit" variant="light" className="w-50 align-self-center rounded-4">
               Add
             </Button>
           </Form>
