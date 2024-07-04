@@ -37,33 +37,30 @@ export default function MobileSidebar({ close }) {
       </button>
 
       <Modal centered show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>List name pls.</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form onSubmit={addNewList} className="d-flex flex-column">
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Control
-                  type="text"
-                  placeholder="Here we go!"
-                  autoFocus
-                  ref={newListName}
-                  required
-                  className="rounded-4"
-                />
-              </Form.Group>
-              <Button
-                type="submit"
-                variant="light"
-                className="w-50 align-self-center rounded-4"
-              >
-                Add
-              </Button>
-            </Form>
-          </Modal.Body>
+        <Modal.Header closeButton>
+          <Modal.Title>List name pls.</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={addNewList} className="d-flex flex-column">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                placeholder="Here we go!"
+                autoFocus
+                ref={newListName}
+                required
+                className="rounded-4"
+              />
+            </Form.Group>
+            <Button
+              type="submit"
+              variant="light"
+              className="w-50 align-self-center rounded-4"
+            >
+              Add
+            </Button>
+          </Form>
+        </Modal.Body>
       </Modal>
     </section>
   );

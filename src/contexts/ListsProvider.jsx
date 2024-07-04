@@ -2,6 +2,19 @@ import React, { useContext, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const ListsContext = React.createContext();
+// export const TodoContext = createContext({
+//   todos: [
+//     {
+//       id: 1,
+//       todo: " Todo msg",
+//       completed: false,
+//     },
+//   ],
+//   addTodo: (todo) => {},
+//   updateTodo: (id, todo) => {},
+//   deleteTodo: (id) => {},
+//   toggleComplete: (id) => {},
+// });
 
 export function useLists() {
   return useContext(ListsContext);
@@ -58,6 +71,31 @@ export function ListsProvider({ children }) {
     });
   }
 
+  function updateTask(prevTask, newTask) {
+    setLists((prevLists) => {
+      return prevLists.map((li) => {
+        if (li.listName === lists[selectedList].listName) {
+          return {
+            ...li,
+            tasks: li.tasks.map((t) => (t === prevTask ? (t = newTask) : t)),
+          };
+        }
+        return li;
+      });
+    });
+  }
+
+  function updateListName(listIndex, newListName) {
+    setLists((prevLists) => {
+      return prevLists.map((li) => {
+        if (li.listName === lists[listIndex].listName) {
+          return { ...li, listName: newListName };
+        }
+        return li;
+      });
+    });
+  }
+
   return (
     <ListsContext.Provider
       value={{
@@ -68,6 +106,8 @@ export function ListsProvider({ children }) {
         selectedList,
         addTask,
         removeTask,
+        updateTask,
+        updateListName,
       }}
     >
       {children}

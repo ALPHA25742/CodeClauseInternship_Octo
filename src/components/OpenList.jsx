@@ -11,13 +11,13 @@ export default function OpenList() {
   const newTask = useRef();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const windowWidth = useRef(window.innerWidth);
+  const mobileView = windowWidth.current <= 768;
   function handleSubmit(e) {
     e.preventDefault();
     handleClose();
     addTask(newTask.current.value);
   }
-  const windowWidth = useRef(window.innerWidth);
-  const mobileView = windowWidth.current <= 768;
 
   return (
     <section
@@ -26,9 +26,6 @@ export default function OpenList() {
       } d-flex flex-column`}
     >
       <section className="d-flex flex-grow-1 p-3 pt-5">
-        <h1 className="d-none">
-          {/* {lists.length != 0 && lists[selectedList].listName} */}
-        </h1>
         <article className="flex-grow-1 align-self-center bg-secondary rounded-4 p-3 overflow-y-auto">
           {lists[selectedList].tasks.length != 0 ? (
             <Tasks />
@@ -70,7 +67,11 @@ export default function OpenList() {
                 className="rounded-4"
               />
             </Form.Group>
-            <Button type="submit" variant="light" className="w-50 align-self-center rounded-4">
+            <Button
+              type="submit"
+              variant="light"
+              className="w-50 align-self-center rounded-4"
+            >
               Add
             </Button>
           </Form>

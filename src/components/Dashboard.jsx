@@ -13,8 +13,9 @@ export default function Dashboard() {
   const { lists } = useLists();
 
   return (
-    <section className="container-fluid" style={{height:'100dvh'}}>
-      <section className={`${mobileView?'d-flex flex-column':'row'} h-100`}>
+    <section className="container-fluid" style={{ height: "100dvh" }}>
+      <section className={`${mobileView ? "d-flex flex-column" : "row"} h-100`}>
+        {/* the burger menu button */}
         <div className="d-md-none align-self-end">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +24,7 @@ export default function Dashboard() {
             fill="currentColor"
             className="bi bi-list my-2 btn"
             viewBox="0 0 16 16"
-            onClick={()=>setShow(true)}
+            onClick={() => setShow(true)}
           >
             <path
               fillRule="evenodd"
@@ -34,7 +35,13 @@ export default function Dashboard() {
         {lists.length != 0 ? <OpenList /> : <WelcomePage />}
         <Sidebar />
       </section>
-      <Offcanvas placement="end" show={show} onHide={() => setShow(false)} className='bg-secondary' scroll='true'>
+      <Offcanvas
+        placement="end"
+        show={show}
+        onHide={() => setShow(false)}
+        className="bg-secondary"
+        scroll="true"
+      >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title></Offcanvas.Title>
         </Offcanvas.Header>
